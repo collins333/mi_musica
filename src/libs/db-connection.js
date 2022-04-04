@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-let db = mongoose.connect('mongodb://localhost/musica', {
+let db = mongoose.connect('mongodb://collins:collins@cluster0.jncqe.mongodb.net/test', {
   useCreateIndex: true,
   useNewUrlParser: true,
   useFindAndModify: false,
