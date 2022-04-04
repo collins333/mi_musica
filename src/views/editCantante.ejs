@@ -1,0 +1,48 @@
+<% include partials/_header %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <form action="/editCantante/<%= interprete._id %>?_method=PUT" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="form-group">
+              <label for="">Nombre del intérprete</label>
+              <input class="form-control" type="text" name="nombre" id="nombre" placeholder="" value="<%= interprete.nombre %>">
+            </div>
+            <div class="form-group">
+              <label for="">Nacionalidad del intérprete</label>
+              <input class="form-control" type="text" name="nacionalidad" id="nacionalidad" placeholder="" value="<%= interprete.nacionalidad %>">
+            </div>
+            <div class="form-group">
+              <label for="">Foto del intérprete</label>
+              <input class="form-control" type="text" name="caratula" id="caratula" placeholder="" value="<%= interprete.caratula %>">
+            </div>
+            <div class="form-group">
+              <label for="">Información del intérprete</label>
+              <textarea class="form-control" name="info" cols="80"
+                placeholder=""
+                ><%= interprete.info %></textarea>
+            </div>
+            <div class="form-group">
+              <label for="">Discos</label>
+              <input class="form-control" type="text" name="disco" id="disco" placeholder="" value="">
+            </div>
+            <button class="btn btn-success btn-block" type="submit">
+              Actualizar datos 
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="card-body">
+        <a href="/verCantante/<%= interprete._id %>" class="btn btn-warning">
+          Volver
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById('nombre').focus()
+</script>
+<% include partials/_footer%>
