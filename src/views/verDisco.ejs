@@ -51,12 +51,12 @@
             <%= i+1 %>
           </td>
           <td>
+            <span class="tituloCanciones">
+              <!-- <a href="/verCancion/<%= disco.canciones[i]._id %>"> -->
+                <%= disco.canciones[i].tit_cancion %>
+                <!-- </a> -->
+            </span>
             <strong>
-              <span class="tituloCanciones">
-                <!-- <a href="/verCancion/<%= disco.canciones[i]._id %>"> -->
-               <%= disco.canciones[i].tit_cancion %>
-               <!-- </a> -->
-              </span>
              <%= disco.canciones[i].num_cancion %>
             </strong>
           </td>
