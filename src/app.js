@@ -3,6 +3,7 @@ const express = require('express')
 const db = require('../src/libs/db-connection')
 const morgan = require('morgan')
 const methodOverride = require('method-override');
+const publicDir = express.static(`${__dirname}/public`);
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.set('view engine', 'ejs')
 app.use(morgan('dev'))
 app.use(express.urlencoded({extended: false}))
 app.use(methodOverride('_method'));
+app.use(publicDir);
 
 // routes
 app.use('/', cantantesRoutes)
