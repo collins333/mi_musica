@@ -20,7 +20,6 @@ router.get('/canciones/:pagina', async (req, res) => {
 	.find({})
 	.skip((porPagina * pagina) - porPagina)
 	.limit(porPagina)
-	// .sort({del_disco: -1, num_cancion: 1})
 	.exec((err, canciones) => {
 		Disco.populate(canciones, {path: "del_disco"});
 		Cancion.countDocuments((err, cuenta) => {

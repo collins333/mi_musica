@@ -1,5 +1,5 @@
 <% include partials/_header %>
-<%= disco._id %>
+<!-- <%= disco._id %> -->
 <div class="container">
   <div class="col-md-8">
     <table class="table table-bordered table-hover">
@@ -27,15 +27,15 @@
         </tr>
         <tr>
           <td>
-            <form action="/deleteDisco/<%= disco._id %>?_method=DELETE" method="POST">
+            <!-- <form action="/deleteDisco/<%= disco._id %>?_method=DELETE" method="POST">
               <input type="hidden" name="_method" value="DELETE">
               <button class="btn btn-danger delete" type="submit">Eliminar</button> 
-            </form>
+            </form> -->
           </td>
           <td>
-            <a href="/editDisco/<%= disco._id %>" class="btn btn-success">
+            <!-- <a href="/editDisco/<%= disco._id %>" class="btn btn-success">
               Editar
-            </a>
+            </a> -->
           </td>
         </tr>
       </tbody>
@@ -52,8 +52,10 @@
           </td>
           <td>
             <strong>
-              <a href="/verCancion/<%= disco.canciones[i]._id %>">
-             <%= disco.canciones[i].tit_cancion %> </a><%= disco.canciones[i].num_cancion %>
+              <!-- <a href="/verCancion/<%= disco.canciones[i]._id %>"> -->
+             <%= disco.canciones[i].tit_cancion %>
+             <!-- </a> -->
+             <%= disco.canciones[i].num_cancion %>
             </strong>
           </td>
           <td>
@@ -69,7 +71,7 @@
     </a>
   </div>
 </div>
-<script>
+<!-- <script>
   let botones = document.getElementsByClassName('delete')
   for(let i=0; i<botones.length; i+=1) {
     botones[i].addEventListener('click', (e) => {
@@ -79,5 +81,5 @@
       }
     })
   }
-</script>
+</script> -->
 <% include partials/_footer %>

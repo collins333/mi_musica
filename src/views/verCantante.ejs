@@ -13,15 +13,15 @@
         </tr>
         <tr>
           <td>
-            <form action="/deleteCantante/<%= interprete._id %>?_method=DELETE" method="POST">
+            <!-- <form action="/deleteCantante/<%= interprete._id %>?_method=DELETE" method="POST">
               <input type="hidden" name="_method" value="DELETE">
               <button class="btn btn-danger delete" type="submit">Eliminar</button> 
-            </form>
+            </form> -->
           </td>
           <td>
-            <a href="/editCantante/<%= interprete._id %>" class="btn btn-success">
+            <!-- <a href="/editCantante/<%= interprete._id %>" class="btn btn-success">
               Editar
-            </a>
+            </a> -->
           </td>
         </tr>
       </tbody>
@@ -51,7 +51,7 @@
     </a>
   </div>
 </div>
-<script>
+<!-- <script>
   let botones = document.getElementsByClassName('delete')
   for(let i=0; i<botones.length; i+=1) {
     botones[i].addEventListener('click', (e) => {
@@ -61,5 +61,5 @@
       }
     })
   }
-</script>
+</script> -->
 <% include partials/_footer %>
