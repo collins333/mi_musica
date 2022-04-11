@@ -1,9 +1,8 @@
 <% include partials/_header %>
-<!-- <%= disco._id %> -->
 <div class="container">
-  <div class="col-md-8">
+  <div class="col-md-8 centrar">
     <table class="table table-bordered table-hover">
-      <thead>
+      <thead class="cabecera">
         <th></th>
         <th>Título del disco</th>
         <th>Intérprete</th>
@@ -13,7 +12,7 @@
           <td rowspan="3">
             <img src="<%= disco.caratula %>" alt="" width="300px" height="300px">
           </td>
-          <td><strong><%= disco.titulo %></strong></td>
+          <td class="nombre-disco"><%= disco.titulo %></td>
           <td>
             <a href="/verCantante/<%= disco.interprete._id %>">
               <%= disco.interprete.nombre %>
@@ -23,7 +22,9 @@
         <tr>
           <td>Año publicación: <%= disco.anyo %></td>
           <td>
-            <img src="<%= disco.interprete.caratula %>" alt="" width="100px" height="100px"></td>
+            <a href="/verCantante/<%= disco.interprete._id %>">
+              <img src="<%= disco.interprete.caratula %>" alt="" width="100px" height="100px"></td>
+            </a>
         </tr>
         <tr>
           <td>
@@ -40,11 +41,18 @@
         </tr>
       </tbody>
     </table>
-    <div class="card-body"><%= disco.info %></div>
+    <div class="card-body texto-blanco"><%= disco.info %></div>
   </div>
-  <div class="col-md-6">
-    <h3>Canciones del disco</h3>
+  <div class="col-md-8 centrar">
+    <!-- <h3>Canciones del disco</h3> -->
     <table class="table table-bordered table-hover">
+      <thead class="cabecera">
+        <tr class="canciones-disco">
+          <th></th>
+          <th>Canciones del disco</th>
+          <th></th>
+        </tr>
+      </thead>
       <% for(var i=0; i < disco.canciones.length; i++){ %>
         <tr>
           <td>
@@ -52,22 +60,20 @@
           </td>
           <td>
             <strong>
-            <span class="tituloCanciones">
               <!-- <a href="/verCancion/<%= disco.canciones[i]._id %>"> -->
-                <%= disco.canciones[i].tit_cancion %>
-                <!-- </a> -->
-            </span>
+             <%= disco.canciones[i].tit_cancion %>
+             <!-- </a> -->
              <%= disco.canciones[i].num_cancion %>
             </strong>
           </td>
-          <td>
+          <td class="duracion">
             <%= disco.canciones[i].dur_cancion %>
           </td>
         </tr>
       <% } %>
     </table>
   </div>
-  <div class="card-body">
+  <div class="card-body centrar-texto">
     <a href="/discos/a" class="btn btn-warning">
       Volver
     </a>

@@ -1,9 +1,8 @@
 <% include partials/_header %>
-<!-- <%= discos %> -->
 <div class="container">
-  <div class="col-md-8">
+  <div class="col-md-8 centrar">
     <table class="table table-bordered table-hover">
-      <thead>
+      <thead class="cabecera">
         <tr>
           <th>N°</th>
           <th>Título</th>
@@ -88,13 +87,13 @@
       </a>
     </div> -->
   </div>
-  <div class="card-body">
+  <div class="card-body centrar-texto">
     <a href="/" class="btn btn-warning">
       Volver
     </a>
   </div>
 </div>
-<script>
+<!-- <script>
   let botones = document.getElementsByClassName('delete')
   for(let i=0; i<botones.length; i+=1) {
     botones[i].addEventListener('click', (e) => {
@@ -104,5 +103,5 @@
       }
     })
   }
-</script>
+</script> -->
 <% include partials/_footer %>

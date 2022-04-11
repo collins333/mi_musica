@@ -1,14 +1,14 @@
 <% include partials/_header %>
-<!-- <%= interpretes %> -->
 <div class="container">
   <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-7 centrar">
       <table class="table table-bordered table-hover">
         <thead>
-          <tr>
+          <tr class="cabecera">
             <th>N°</th>
             <th>Nombre</th>
             <th>Nacionalidad</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -19,7 +19,7 @@
                 <%= interpretes[i].nombre %></strong>
               </td>
               <td><%= interpretes[i].nacionalidad %></td>
-              <td>
+              <td class="centrar-texto">
                 <a href="/verCantante/<%= interpretes[i]._id %>">
                   <img src="<%= interpretes[i].caratula %>" alt="" width="50px" height="50px">
                 </a>
@@ -86,13 +86,13 @@
       </div> -->
     </div>
   </div>
-  <div class="card-body">
+  <div class="card-body centrar-texto">
     <a href="/" class="btn btn-warning">
       Volver
     </a>
   </div>
 </div>
-<script>
+<!-- <script>
   let botones = document.getElementsByClassName('delete')
   for(let i=0; i<botones.length; i+=1) {
     botones[i].addEventListener('click', (e) => {
@@ -102,5 +102,5 @@
       }
     })
   }
-</script>
+</script> -->
 <% include partials/_footer %>
