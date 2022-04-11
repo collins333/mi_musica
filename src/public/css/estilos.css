@@ -11,6 +11,10 @@ td strong, td strong a, td span.titulo, td.titulo {
 td span.titulo, th span.discos {
   margin-left: 1rem;
 }
+td span.nombre-interprete {
+  color: black;
+  font-size: 1.2rem;
+}
 td a, td.duracion {
   color: black;
   font-size: 1.1rem;
@@ -21,8 +25,6 @@ td a:hover {
 }
 #indice {
   background-image: url("/img/fondo.jpg");
-  /* background-repeat: no-repeat;
-  background-position: center; */
   background-size: cover;
 }
 .indice {

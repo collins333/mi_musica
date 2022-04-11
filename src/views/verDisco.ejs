@@ -27,24 +27,14 @@
             </a>
         </tr>
         <tr>
-          <td>
-            <!-- <form action="/deleteDisco/<%= disco._id %>?_method=DELETE" method="POST">
-              <input type="hidden" name="_method" value="DELETE">
-              <button class="btn btn-danger delete" type="submit">Eliminar</button> 
-            </form> -->
-          </td>
-          <td>
-            <!-- <a href="/editDisco/<%= disco._id %>" class="btn btn-success">
-              Editar
-            </a> -->
-          </td>
+          <td></td>
+          <td></td>
         </tr>
       </tbody>
     </table>
     <div class="card-body texto-blanco"><%= disco.info %></div>
   </div>
   <div class="col-md-8 centrar">
-    <!-- <h3>Canciones del disco</h3> -->
     <table class="table table-bordered table-hover">
       <thead class="cabecera">
         <tr class="canciones-disco">
@@ -63,7 +53,9 @@
               <!-- <a href="/verCancion/<%= disco.canciones[i]._id %>"> -->
              <%= disco.canciones[i].tit_cancion %>
              <!-- </a> -->
-             <%= disco.canciones[i].num_cancion %>
+             <span class="nombre-interprete">
+                (<%= disco.canciones[i].num_cancion %>)
+             </span>
             </strong>
           </td>
           <td class="duracion">
@@ -79,15 +71,4 @@
     </a>
   </div>
 </div>
-<!-- <script>
-  let botones = document.getElementsByClassName('delete')
-  for(let i=0; i<botones.length; i+=1) {
-    botones[i].addEventListener('click', (e) => {
-      let respuesta = confirm('Estás seguro de querer eliminar este disco?')
-      if(!respuesta){
-        e.preventDefault()
-      }
-    })
-  }
-</script> -->
 <% include partials/_footer %>

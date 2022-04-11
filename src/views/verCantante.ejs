@@ -13,24 +13,14 @@
           <td><%= interprete.nacionalidad %></td>
         </tr>
         <tr>
-          <td>
-            <!-- <form action="/deleteCantante/<%= interprete._id %>?_method=DELETE" method="POST">
-              <input type="hidden" name="_method" value="DELETE">
-              <button class="btn btn-danger delete" type="submit">Eliminar</button> 
-            </form> -->
-          </td>
-          <td>
-            <!-- <a href="/editCantante/<%= interprete._id %>" class="btn btn-success">
-              Editar
-            </a> -->
-          </td>
+          <td></td>
+          <td></td>
         </tr>
       </tbody>
     </table>
     <div class="card-body texto-blanco"><%= interprete.info %></div>
   </div>
   <div class="col-md-8 centrar">
-    <!-- <h3>Discos en la colección</h3> -->
     <table class="table table-bordered table-hover">
       <thead class="cabecera">
         <tr class="discos-coleccion">
@@ -66,15 +56,4 @@
     </a>
   </div>
 </div>
-<!-- <script>
-  let botones = document.getElementsByClassName('delete')
-  for(let i=0; i<botones.length; i+=1) {
-    botones[i].addEventListener('click', (e) => {
-      let respuesta = confirm('Estás seguro de querer eliminar este cantante?')
-      if(!respuesta){
-        e.preventDefault()
-      }
-    })
-  }
-</script> -->
 <% include partials/_footer %>
