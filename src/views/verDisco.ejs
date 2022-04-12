@@ -50,12 +50,11 @@
           </td>
           <td>
             <strong>
-              <!-- <a href="/verCancion/<%= disco.canciones[i]._id %>"> -->
-             <%= disco.canciones[i].tit_cancion %>
-             <!-- </a> -->
-             <span class="nombre-interprete">
-                (<%= disco.canciones[i].num_cancion %>)
-             </span>
+              <a href="/verCancion/<%= disco.canciones[i]._id %>">
+                <%= disco.canciones[i].tit_cancion %> </a>
+              <span class="nombre-interprete"> 
+                &nbsp; <%= disco.canciones[i].num_cancion %>
+              </span>
             </strong>
           </td>
           <td class="duracion">

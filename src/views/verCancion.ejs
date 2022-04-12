@@ -1,21 +1,24 @@
 <% include partials/_header %>
-<%= cancion._id %>
 <div class="container">
-  <div class="col-md-8">
+  <div class="col-md-8 centrar">
     <table class="table table-bordered table-hover">
-      <thead>
+      <thead class="cabecera">
         <th>Intérprete</th>
         <th>Título</th>
         <th>Duración</th>
       </thead>
       <tr>
         <td><%= cancion.num_cancion %></td>
-        <td><%= cancion.tit_cancion %></td>
-        <td><%= cancion.dur_cancion %></td>
+        <td class="titulo"><%= cancion.tit_cancion %></td>
+        <td class="centrar-texto"><%= cancion.dur_cancion %></td>
       </tr>      
       <tr>
         <td><strong>Album:</strong></td>
-        <td colspan="2"><%= cancion.del_disco.titulo %></td>
+        <td colspan="2">
+          <a href="/verDisco/<%= cancion.del_disco._id %>">
+            <%= cancion.del_disco.titulo %>
+          </a>
+        </td>
       </tr>
       <tr>
         <td></td>
@@ -24,7 +27,7 @@
       </tr>
     </table>
   </div>
-  <div class="card-body">
+  <div class="card-body centrar-texto">
     <a href="/canciones/canciones" class="btn btn-warning">
       Volver
     </a>
