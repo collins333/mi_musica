@@ -1,14 +1,9 @@
 const mongoose = require('mongoose')
-const envJSON = require('../../env.json')
+const dotenv = require('dotenv').config()
 
-let node_env = process.env.NODE_ENV || "desarrollo";
-let host = envJSON[node_env].ENVhost;
-let cluster = envJSON[node_env].ENVcluster;
-let user = envJSON[node_env].ENVuser;
-let password = envJSON[node_env].ENVpassword;
-let database = envJSON[node_env].ENVdatabase;
+let URL_CONNECT = process.env.URL_CONNECT;
 
-let db = mongoose.connect(`mongodb://${host}${cluster}${password}/${database}`, {
+let db = mongoose.connect(URL_CONNECT, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useFindAndModify: false,
