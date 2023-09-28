@@ -8,8 +8,8 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
 	res.render('index', {
-		title: 'mi colección de música'
-	})
+			title: 'mi colección de música'
+		})
 })
 
 router.get('/cantantes/:pagina', async (req, res) => {
@@ -22,6 +22,8 @@ router.get('/cantantes/:pagina', async (req, res) => {
 	.limit(porPagina)
 	.sort({nombre: 1})
 	.exec((err, interpretes) => {
+		if(err) throw err
+
 		Disco.populate(interpretes, {path: "discos"});
 		Interprete.countDocuments((err, cuenta) => {
 			if(err) throw err
@@ -42,7 +44,7 @@ router.get('/verCantante/:id', async (req, res) => {
 	await Interprete.findById(id, (err, interprete) => {
 		if (err) throw err
 
-		// Cancion.populate(interprete, {path: "canciones"});
+		Cancion.populate(interprete, {path: "canciones"});
 		Disco.populate(interprete, {path: "discos"}, (err, interprete) => {
 			if (err) throw err
 
@@ -84,7 +86,6 @@ router.get('/editCantante/:id', async (req, res) => {
 	})
 })
 
-
 router.put('/editCantante/:id', async (req, res) => {
   let id = req.params.id,
 			agregarDisco = req.body.disco;
@@ -107,7 +108,6 @@ router.put('/editCantante/:id', async (req, res) => {
   });
 });
 
-
 router.delete('/deleteCantante/:id', async (req, res) => {
   const {id} = req.params
 	await Interprete.findByIdAndDelete(id, (err, cantante) => {
@@ -116,6 +116,28 @@ router.delete('/deleteCantante/:id', async (req, res) => {
 		res.redirect('/cantantes/a');
   });
 })
+
+router.get('/buscando', async (req, res) => {
+	if(req.query.buscar) {
+		await Interprete
+		.find({nombre: {$regex:'.*'+req.query.buscar+'.*', $options:'i'}})
+		.exec((err, interpretes) => {
+			if(err){
+				throw err;
+			}else{
+				if(interpretes.length == 0){
+					res.render('noEncontrado', {title: 'Buscador de cantantes'})
+				}else {
+					res.render('buscar', {
+						title: 'buscador de cantantes',
+						interpretes})
+				}
+			}
+		})
+	}else{
+		res.render('noEncontrado', {title: 'Buscador de cantantes'})
+	}
+});
 
 
 module.exports = router;
