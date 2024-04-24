@@ -1,5 +1,5 @@
+<%= cancion._id %>
 <% include partials/_header %>
-<!-- <%= cancion %> -->
 <div class="container">
   <div class="row">
     <div class="col-md-5 offset-md-3">
@@ -18,6 +18,10 @@
             <div class="form-group">
               <label for="">Duración</label>
               <input class="form-control" type="text" name="dur_cancion" id="dur_cancion" placeholder="" value="<%= cancion.dur_cancion %>">
+            </div>
+            <div class="form-group">
+              <label for="">Enlace</label>
+              <input type="text" class="form-control" name="enlace" id="enlace" placeholder="" value="<%= cancion.enlace %>">
             </div>
             <div class="form-group">
               <label for="">Disco</label>

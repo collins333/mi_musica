@@ -1,6 +1,6 @@
 const path = require('path')
 const express = require('express')
-const db = require('../src/libs/db-connection')
+const db = require('./libs/db-connection')
 const morgan = require('morgan')
 const methodOverride = require('method-override');
 const publicDir = express.static(`${__dirname}/public`);
@@ -13,7 +13,7 @@ const discosRoutes = require('./routes/discos')
 const cancionesRoutes = require('./routes/canciones')
 
 // settings
-app.set('port', process.env.PORT || 4000)
+app.set('port', process.env.PORT || 3000)
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 

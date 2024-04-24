@@ -13,43 +13,55 @@ router.get('/', (req, res) => {
 })
 
 router.get('/canciones/:pagina', async (req, res) => {
-	let porPagina = 20,
+	let porPagina = 50,
 			pagina = req.params.pagina || 1;
 
 	await Cancion
 	.find({})
 	.skip((porPagina * pagina) - porPagina)
 	.limit(porPagina)
-	.exec((err, canciones) => {
-		Disco.populate(canciones, {path: "del_disco"});
-		Cancion.countDocuments((err, cuenta) => {
-			if(err) throw err
-			
-			res.render('canciones', {
-				canciones,
-				title: 'índice de canciones',
-				current: pagina,
-				paginas: Math.ceil((cuenta / porPagina))
-			})
-		});
-	})
+	.exec()
+		.then(canciones => {
+			Disco.populate(canciones, {path: "del_disco"});
+			Cancion.countDocuments()
+				.then(cuenta => {
+					res.render('canciones', {
+						canciones,
+						title: 'índice de canciones',
+						current: pagina,
+						paginas: Math.ceil((cuenta / porPagina))
+					})
+				})
+				.catch(err => {
+					console.error('Error:', err)
+				})
+		})
+		.catch(err => {
+			console.error('Error:', err)
+		})
 });
 
 router.get('/verCancion/:id', async (req, res) => {
 	let id = req.params.id;
 
-	await Cancion.findById(id, (err, cancion) => {
-		Interprete.populate(cancion, {path: "del_interprete"});
-		Disco.populate(cancion, {path: "del_disco"}, (err, cancion) => {
-			if(err) throw err
-
-			res.render('verCancion', {
-				title: 'información de la canción',
-				cancion
-			});
-		});
-	})
-})
+	await Cancion.findById(id)
+		.then(cancion => {
+			Interprete.populate(cancion, {path: "del_interprete"});
+			Disco.populate(cancion, {path: "del_disco"})
+				.then(cancion => {
+					res.render('verCancion', {
+						title: 'información de la canción',
+						cancion
+					});
+				})
+				.catch(err => {
+					console.error('Error:', err)
+				})
+		})
+		.catch(err => {
+			console.error('Error:', err)
+		})
+});
 
 router.get('/addCancion', (req, res) => {
 	res.render('addCancion', {
@@ -58,44 +70,52 @@ router.get('/addCancion', (req, res) => {
 })
 
 router.post('/addCancion', async (req, res) => {
-  const {tit_cancion, num_cancion, dur_cancion, del_disco} = req.body;
+  const {tit_cancion, num_cancion, dur_cancion, del_disco, del_interprete, enlace} = req.body;
 
-	const cancion = await Cancion.create({tit_cancion, num_cancion, dur_cancion, del_disco})
+	const cancion = await Cancion.create({tit_cancion, num_cancion, dur_cancion, del_disco, del_interprete, enlace})
 
-		res.redirect('/canciones/canciones')		
+		res.redirect('/canciones/1')		
 })
 
 router.get('/editCancion/:id', async (req, res) => {
-  await Cancion.findById(req.params.id, (err, cancion) => {
-		if(err) throw err
-
-		Disco.populate(cancion, {path:"del_disco"}, (err, cancion) => {
-			if(err) throw err
-
-			res.render('editCancion', { 
-				title: 'Editar la canción',
-				cancion 
-			})
+  await Cancion.findById(req.params.id)
+		.then(cancion => {
+			Disco.populate(cancion, {path:"del_disco"})
+				.then(cancion => {
+					res.render('editCancion', { 
+						title: 'Editar la canción',
+						cancion 
+					})
+				})
+				.catch(err => {
+					console.error('Error:', error)
+				})
 		})
-	})
+		.catch(err => {
+			console.error('Error:', error)
+		})
 })
 
 router.put('/editCancion/:id', async (req, res) => {
   let id = req.params.id;
-  await Cancion.findByIdAndUpdate(id, req.body, (err, cancion) => {
-		if(err) throw err
-		
-  	res.redirect('/canciones/canciones');
-	});
+  
+	await Cancion.findByIdAndUpdate(id, req.body)
+		.then(cancion => {
+			res.redirect('/canciones/1');
+		})
+		.catch({})
 });
 
 router.delete('/deleteCancion/:id', async (req, res) => {
   const {id} = req.params
-	await Cancion.findByIdAndDelete(id, (err, cancion) => {
-  	if(err) throw err
-
-		res.redirect('/canciones/a');
-  });
-})
+	
+	await Cancion.findByIdAndDelete(id)
+		.then(cancion => {
+			res.redirect('/canciones/1');
+		})
+		.catch(err => {
+			console.error('Error:', err)
+		})
+});
 
 module.exports = router;

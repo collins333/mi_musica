@@ -25,6 +25,8 @@ td a:hover {
 }
 #indice {
   background-image: url("/img/fondo.jpg");
+  /* background-repeat: no-repeat;
+  background-position: center; */
   background-size: cover;
 }
 .indice {
@@ -60,6 +62,7 @@ td a:hover {
 }
 .texto-blanco {
   color: white;
+  background-color: black;
 }
 .discos-coleccion, .canciones-disco {
   font-size: 1.5rem;
@@ -70,4 +73,27 @@ td a:hover {
   font-weight: bold;
   color: brown;
   font-family:Comic Sans ms;
+}
+.ver {
+  margin-bottom: 0;
+}
+.btn-volver {
+  color: white;
+  background-color: darkcyan;
+  border-color: darkcyan;
+}
+.btn-volver:hover {
+  color: white;
+  background-color: darkblue;
+  border-color: darkblue;
+}
+.transparente {
+  background-color: darkgoldenrod;
+}
+.redondo {
+  border-radius: 50%;
+}
+.grande {
+  font-size: 1.2rem;
+  font-weight: bold;
 }

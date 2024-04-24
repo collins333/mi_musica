@@ -30,10 +30,25 @@
                 </a>
               </td>
               <td><%= canciones[i].num_cancion %></td>
+              <td>
+                <button class="button btn-success mb-1">
+                  <a href="/editCancion/<%= canciones[i]._id %>">editar</a>
+                </button>
+                <form action="/deleteCancion/<%= canciones[i]._id %>?_method=DELETE" method="POST">
+                  <button class="button btn-danger mt-1" type="submit">
+                    eliminar
+                  </button>
+                </form>
+              </td>
             </tr>
           <% } %>
         </tbody>
       </table>
+      <div class="mb-3">
+        <a class="btn btn-primary btn-block" href="/addCancion">
+          Añadir
+        </a>
+      </div>
       <div class="row">
         <% if(paginas) { %>
           <nav class="mx-auto">
@@ -88,7 +103,7 @@
     </div>
   </div>
   <div class="card-body centrar-texto">
-    <a href="/" class="btn btn-warning">
+    <a href="/" class="btn btn-volver">
       Volver
     </a>
   </div>

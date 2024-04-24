@@ -1,0 +1,34 @@
+<% include partials/_header %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 centrar">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr class="cabecera">
+            <th>N°</th>
+            <th>Nombre</th>
+            <th>Nacionalidad</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < interpretes.length; i++) { %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><strong>
+                <%= interpretes[i].nombre %></strong>
+              </td>
+              <td><%= interpretes[i].nacionalidad %></td>
+              <td class="centrar-texto">
+                <a href="/verCantante/<%= interpretes[i]._id %>">
+                  <img src="<%= interpretes[i].caratula %>" alt="" width="50px" height="50px">
+                </a>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<% include partials/_footer %>

@@ -1,3 +1,4 @@
+<% discos.titulo %>
 <% include partials/_header %>
 <div class="container">
   <div class="col-md-8 centrar">
@@ -7,6 +8,7 @@
           <th>N°</th>
           <th>Título</th>
           <th>Intérprete</th>
+          <th>Foto</th>
           <th></th>
         </tr>
       </thead>
@@ -26,10 +28,25 @@
                 <img src="<%= discos[i].caratula %>" alt="" width="50px" height="50px">
               </a>
             </td>
+            <td>
+              <button class="button btn-success mb-1">
+                <a href="/editDisco/<%= discos[i]._id %>">editar</a>
+              </button>
+              <form action="/deleteDisco/<%= discos[i]._id %>?_method=DELETE" method="POST">
+                <button class="button btn-danger mt-1" type="submit">
+                  eliminar
+                </button>
+              </form>
+            </td>
           </tr>
         <% } %>
       </tbody>
     </table>
+    <div class="mb-3">
+      <a class="btn btn-primary btn-block" href="/addDisco">
+        Añadir
+      </a>
+    </div>
     <div class="row">
       <% if(paginas) { %>
         <nav class="mx-auto">
@@ -83,7 +100,7 @@
     </div>
   </div>
   <div class="card-body centrar-texto">
-    <a href="/" class="btn btn-warning">
+    <a href="/" class="btn btn-volver">
       Volver
     </a>
   </div>
