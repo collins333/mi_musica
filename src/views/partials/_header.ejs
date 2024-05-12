@@ -22,32 +22,46 @@
             <li class="nav-item active">
               <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active dropdown">
+            <!-- <li class="nav-item active dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                 Intérpretes
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/cantantes/1">Lista de intérpretes</a>
               </div>
+            </li> -->
+            <li class="nav-item active">
+              <a href="/cantantes/1" class="nav-link">Intérpretes</a>
             </li>
-            <li class="nav-item active dropdown">
+            <!-- <li class="nav-item active dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                 Discos
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/discos/1">Lista de discos</a>
               </div>
+            </li> -->
+            <li class="nav-item active">
+              <a href="/discos/1" class="nav-link">Discos</a>
             </li>
-            <li class="nav-item active dropdown">
+            <!-- <li class="nav-item active dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                 Canciones
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/canciones/1">Lista de canciones</a>
               </div>
+            </li> -->
+            <li class="nav-item active">
+              <a href="/canciones/1" class="nav-link">Canciones</a>
             </li>
             <form class="d-flex" action="/buscando" method="GET">
               <input class="form-control me-2" type="text" name="buscar" placeholder="Buscar cantantes" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+            &nbsp; &nbsp;
+            <form class="d-flex" action="/buscandoDiscos" method="GET">
+              <input class="form-control me-2" type="text" name="buscar2" placeholder="Buscar discos" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
           </ul>

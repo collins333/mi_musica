@@ -1,15 +1,17 @@
 <% include partials/_header %>
 <div class="container">
   <div class="row">
-    <div class="col-md-9 centrar">
+    <div class="col-md-11 centrar">
       <table class="table table-bordered table-hover">
         <thead class="cabecera">
           <tr>
             <th>N°</th>
             <th>Título</th>
+            <th>Versionado</th>
             <th>Duración</th>
-            <th>Disco</th>
+            <th colspan="2">Disco</th>
             <th>Intérprete</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -23,16 +25,30 @@
                   <%= canciones[i].tit_cancion %>
                 </a>
               </strong></td>
-              <td><%= canciones[i].dur_cancion %></td>
+              <% if (canciones[i].num_cancion) { %>
+                <td><%= canciones[i].num_cancion %></td>
+              <% } else { %>
+                <td><%= canciones[i].del_disco.interprete.nombre %></td>
+              <% } %>
+              <td class="centrar-texto"><%= canciones[i].dur_cancion %></td>
               <td>
                 <a href="/verDisco/<%= canciones[i].del_disco._id %>">
                   <%= canciones[i].del_disco.titulo %>
                 </a>
               </td>
-              <td><%= canciones[i].num_cancion %></td>
               <td>
+                <a href="/verDisco/<%= canciones[i].del_disco._id %>">
+                  <img src="<%= canciones[i].del_disco.caratula %>" alt="" width="60px">
+                </a>
+              </td>
+              <td>
+                <a href="/verCantante/<%= canciones[i].del_disco.interprete._id %>">
+                  <%= canciones[i].del_disco.interprete.nombre %>
+                </a>
+              </td>
+              <td class="centrar-texto">
                 <button class="button btn-success mb-1">
-                  <a href="/editCancion/<%= canciones[i]._id %>">editar</a>
+                  <a class="text-light" href="/editCancion/<%= canciones[i]._id %>">editar</a>
                 </button>
                 <form action="/deleteCancion/<%= canciones[i]._id %>?_method=DELETE" method="POST">
                   <button class="button btn-danger mt-1" type="submit">

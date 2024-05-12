@@ -22,9 +22,12 @@ router.get('/cantantes/:pagina', async (req, res) => {
 		.sort({nombre: 1})
 		.skip((porPagina * pagina) - porPagina)
 		.limit(porPagina)
+		.populate('discos')
+		.populate('canciones')
 		.exec()
 			.then(interpretes => {
-				Disco.populate(interpretes, {path: 'discos'})
+				// Disco.populate(interpretes, {path: 'discos'})
+				// Cancion.populate(interpretes, {path: 'canciones'})
 				Interprete.countDocuments()
 					.then(cuenta =>{
 						res.render('cantantes', {
@@ -48,11 +51,13 @@ router.get('/verCantante/:id', async (req, res) => {
 
 	await Interprete
 		.findById(id)
+		.populate('canciones')
+		.populate('discos')
 		.exec()
 			.then(interprete => {
-				Cancion.populate(interprete, {path: 'canciones'})
-				Disco.populate(interprete, {path: 'discos'})
-					.then(interprete => {
+				// Cancion.populate(interprete, {path: 'canciones'})
+				// Disco.populate(interprete, {path: 'discos'})
+					// .then(interprete => {
 						res.render('verCantante', {
 							title: 'toda la información del cantante',
 							interprete
@@ -61,7 +66,7 @@ router.get('/verCantante/:id', async (req, res) => {
 					.catch(err => {
 						console.error('Error:', err)
 					})
-			})
+			// })
 			.catch(err => {
 				console.error('Error:', err)
 			})
@@ -74,19 +79,21 @@ router.get('/addCantante', (req, res) => {
 })
 
 router.post('/addCantante', async (req, res) => {
-	const {nombre, nacionalidad, info, caratula, discos} = req.body;
+	const {nombre, nacionalidad, info, caratula} = req.body;
 	
-	await Interprete.create({nombre, nacionalidad, info, caratula, discos});
+	await Interprete.create({nombre, nacionalidad, info, caratula});
 
 	res.redirect('/cantantes/1')
 })
 
 router.get('/editCantante/:id', async (req, res) => {
 
-  await Interprete.findById(req.params.id)
+  await Interprete
+	.findById(req.params.id)
+	.populate('discos')
 		.then(interprete => {
-			Disco.populate(interprete, {path: 'discos'})
-			.then(interprete => {
+			// Disco.populate(interprete, {path: 'discos'})
+			// .then(interprete => {
 				res.render('editCantante', { 
 					title: 'Editar el cantante',
 					interprete 
@@ -94,7 +101,7 @@ router.get('/editCantante/:id', async (req, res) => {
 			})
 			.catch(err => {
 				console.error('Error:', err)
-			})
+			// })
 		})
 		.catch(err => {
 			console.error('Error:', err)
@@ -102,20 +109,20 @@ router.get('/editCantante/:id', async (req, res) => {
 })
 
 router.put('/editCantante/:id', async (req, res) => {
-  let id = req.params.id,
-	agregarDisco = req.body.disco;
+  let id = req.params.id
+	// agregarDisco = req.body.disco;
 		
 	await Interprete.findByIdAndUpdate(id, req.body)
 		.then(interprete => {
-			let arr = interprete.discos;
+			// let arr = interprete.discos;
 			// para eliminar algún elemento del array discos
 			// arr.splice(28,2)
 			// interprete.save()
 		
-			if(agregarDisco !== ""){
-				arr.push(agregarDisco)
-				interprete.save() 
-			}
+			// if(agregarDisco !== ""){
+			// 	arr.push(agregarDisco)
+			// 	interprete.save() 
+			// }
 			
 			res.redirect('/cantantes/1');
 		})

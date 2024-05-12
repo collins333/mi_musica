@@ -6,29 +6,31 @@
         <th>Intérprete</th>
         <th>Título</th>
         <th>Duración</th>
+        <th>Disco</th>
+        <th>Cantante</th>
       </thead>
       <tr>
-        <td><%= cancion.num_cancion %></td>
+        <td>
+          <a href="/verCantante/<%= cancion.del_disco.interprete._id %>">
+            <%= cancion.del_disco.interprete.nombre %>
+          </a>
+        </td>
         <td class="titulo">
           <a href="<%= cancion.enlace %>" target="_blank">
             <%= cancion.tit_cancion %>
           </a>
         </td>
         <td class="centrar-texto"><%= cancion.dur_cancion %></td>
-      </tr>      
-      <tr>
-        <td><strong>Album:</strong></td>
-        <td colspan="2">
+        <td>
           <a href="/verDisco/<%= cancion.del_disco._id %>">
             <%= cancion.del_disco.titulo %>
           </a>
         </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+        <% if(cancion.num_cancion) { %>
+          <td colspan="2"><%= cancion.num_cancion %></td>
+        <% } else { %>
+          <td colspan="2"><%= cancion.del_disco.interprete.nombre %></td>
+        <% } %>
     </table>
   </div>
   <div class="card-body centrar-texto">
