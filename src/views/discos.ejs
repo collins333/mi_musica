@@ -16,7 +16,11 @@
           <tr>
             <td><%= i + 1 %></td>
             <td>
-              <strong><%= discos[i].titulo %></strong>
+              <strong>
+                <a href="/verDisco/<%= discos[i]._id %>">
+                  <%= discos[i].titulo %>
+                </a>
+              </strong>
             </td>
             <td>
               <a href="/verCantante/<%= discos[i].interprete._id %>/">

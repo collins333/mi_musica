@@ -1,4 +1,3 @@
-<%= interprete.discos.titulo %>
 <% include partials/_header %>
 <div class="container">
   <div class="row">
@@ -24,16 +23,6 @@
               <textarea class="form-control" name="info" cols="80"
                 placeholder=""
                 ><%= interprete.info %></textarea>
-            </div>
-            <!-- <div class="form-group">
-              <label for="">Discos del intérprete</label>
-              <% for(var i=0; i < interprete.discos.length; i++){ %>
-              <input class="form-control" type="text" name="discos" id="discos" placeholder="" value="<%= interprete.discos[i].titulo %>">
-              <% } %>
-            </div> -->
-            <div class="form-group">
-              <label for="">Discos</label>
-              <input class="form-control" type="text" name="disco" id="disco" placeholder="" value="">
             </div>
             <button class="btn btn-success btn-block" type="submit">
               Actualizar datos 

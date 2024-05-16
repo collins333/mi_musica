@@ -29,7 +29,7 @@
               Discos en la colección
             </span>
           </th>
-          <th></th>
+          <th>Carátulas</th>
         </tr>
       </thead>
       <% for(var i=0; i < interprete.discos.length; i++){ %>
@@ -37,7 +37,9 @@
           <td>
             <strong>
               <span class="titulo">
-                <%= interprete.discos[i].titulo %>
+                <a href="/verDisco/<%= interprete.discos[i]._id %>">
+                  <%= interprete.discos[i].titulo %>
+                </a>
               </span>
             </strong>
           </td>

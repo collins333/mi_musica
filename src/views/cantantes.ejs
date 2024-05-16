@@ -16,8 +16,12 @@
           <% for(var i=0; i < interpretes.length; i++) { %>
             <tr>
               <td><%= i + 1 %></td>
-              <td><strong>
-                <%= interpretes[i].nombre %></strong>
+              <td>
+                <strong>
+                  <a href="/verCantante/<%= interpretes[i]._id %>">
+                    <%= interpretes[i].nombre %>
+                  </a>
+                </strong>
               </td>
               <td><%= interpretes[i].nacionalidad %></td>
               <td class="centrar-texto">

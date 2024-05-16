@@ -20,8 +20,6 @@ router.get('/canciones/:pagina', async (req, res) => {
 	.find({})
 	.skip((porPagina * pagina) - porPagina)
 	.limit(porPagina)
-	// .populate('del_interprete')
-	// .populate('del_disco')
 	.populate({
 		path: 'del_disco',
 		populate: {
@@ -32,8 +30,6 @@ router.get('/canciones/:pagina', async (req, res) => {
 	.sort({del_disco: 1})
 	.exec()
 		.then(canciones => {
-			// Disco.populate(canciones, {path: "del_disco"});
-			// Interprete.populate(canciones, {path: "del_interprete"});
 			Cancion.countDocuments()
 				.then(cuenta => {
 					res.render('canciones', {
@@ -66,27 +62,42 @@ router.get('/verCancion/:id', async (req, res) => {
 		})
 		.exec()
 			.then(cancion => {
-			// Interprete.populate(cancion, {path: "del_interprete"});
-			// Disco.populate(cancion, {path: "del_disco"})
-				// .then(cancion => {
-					res.render('verCancion', {
+				res.render('verCancion', {
 						title: 'información de la canción',
 						cancion
 					});
+			})
+			.catch(err => {
+				console.error('Error:', err)
+			})
+});
+
+router.get('/addCancion', async (req, res) => {
+	await Interprete
+	.find({})
+	.populate('discos')
+	.sort({nombre: 1})
+	.exec()
+		.then(interpretes => {
+			Disco
+			.find({})
+			.populate('interprete')
+			.sort({interprete: 1, anyo: 1, titulo: 1})
+			.exec()
+				.then(discos => {
+					res.render('addCancion', {
+						title: 'agregar canción nueva',
+						interpretes,
+						discos
+					})
 				})
 				.catch(err => {
 					console.error('Error:', err)
 				})
-		// })
+		})
 		.catch(err => {
 			console.error('Error:', err)
 		})
-});
-
-router.get('/addCancion', (req, res) => {
-	res.render('addCancion', {
-		title: 'agregar canción nueva',
-	})
 })
 
 router.post('/addCancion', async (req, res) => {
@@ -123,20 +134,36 @@ router.get('/editCancion/:id', async (req, res) => {
 		})
 		.exec()
 			.then(cancion => {
-			// Disco.populate(cancion, {path:"del_disco"})
-			// 	.then(cancion => {
-					res.render('editCancion', { 
-						title: 'Editar la canción',
-						cancion 
-					})
-				})
-				.catch(err => {
-					console.error('Error:', error)
-				// })
-		})
-		.catch(err => {
-			console.error('Error:', err)
-		})
+				Interprete
+					.find({})
+					.populate('discos')
+					.sort({nombre: 1})
+					.exec()
+						.then(interpretes => {
+							Disco
+							.find({})
+							.populate('interprete')
+							.sort({interprete: 1, anyo: 1, titulo: 1})
+							.exec()
+								.then(discos => {
+									res.render('editCancion', {
+										title: 'Editar la canción',
+										cancion,
+										interpretes,
+										discos
+									})
+								})
+								.catch(err => {
+									console.error('Error:', err)
+								})
+						})
+						.catch(err => {
+							console.error('Error:', err)
+						})
+			})
+			.catch(err => {
+				console.error('Error:', err)
+			})
 })
 
 router.put('/editCancion/:id', async (req, res) => {

@@ -13,6 +13,9 @@
         <td>
           <a href="/verCantante/<%= cancion.del_disco.interprete._id %>">
             <%= cancion.del_disco.interprete.nombre %>
+          <!-- </a>
+          <a href="/verCantante/<%= cancion.del_disco.interprete._id %>"> -->
+            <img src="<%= cancion.del_disco.interprete.caratula %>" alt="" width="50px">
           </a>
         </td>
         <td class="titulo">
@@ -24,6 +27,7 @@
         <td>
           <a href="/verDisco/<%= cancion.del_disco._id %>">
             <%= cancion.del_disco.titulo %>
+            <img src="<%= cancion.del_disco.caratula %>" alt="" width="50px">
           </a>
         </td>
         <% if(cancion.num_cancion) { %>
