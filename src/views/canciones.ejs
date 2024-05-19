@@ -51,7 +51,7 @@
                   <a class="text-light" href="/editCancion/<%= canciones[i]._id %>">editar</a>
                 </button>
                 <form action="/deleteCancion/<%= canciones[i]._id %>?_method=DELETE" method="POST">
-                  <button class="button btn-danger mt-1" type="submit">
+                  <button class="button btn-danger mt-1 delete" type="submit">
                     eliminar
                   </button>
                 </form>
@@ -124,4 +124,15 @@
     </a>
   </div>
 </div>
+<script>
+  let botones = document.getElementsByClassName('delete')
+  for(let i=0; i<botones.length; i+=1) {
+    botones[i].addEventListener('click', (e) => {
+      let respuesta = confirm('Estás seguro de querer eliminar este disco?')
+      if(!respuesta){
+        e.preventDefault()
+      }
+    })
+  }
+</script>
 <% include partials/_footer %>

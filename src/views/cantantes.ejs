@@ -34,7 +34,7 @@
                   <a class="text-light" href="/editCantante/<%= interpretes[i]._id %>">editar</a>
                 </button>
                 <form action="/deleteCantante/<%= interpretes[i]._id %>?_method=DELETE" method="POST">
-                  <button class="button btn-danger mt-1" type="submit">
+                  <button class="button btn-danger mt-1 delete" type="submit">
                     eliminar
                   </button>
                 </form>
@@ -54,7 +54,7 @@
     <% if(paginas) { %>
       <nav class="mx-auto">
         <ul class="pagination">
-          <!-- primera página -->
+          <!--primera página-->
           <% if(current == 1) { %>
             <li class="page-item disabled">
               <a href="#" class="page-link">Primera página</a>
@@ -107,4 +107,15 @@
     </a>
   </div>
 </div>
+<script>
+  let botones = document.getElementsByClassName('delete')
+  for(let i=0; i<botones.length; i+=1) {
+    botones[i].addEventListener('click', (e) => {
+      let respuesta = confirm('Estás seguro de querer eliminar este intérprete?')
+      if(!respuesta){
+        e.preventDefault()
+      }
+    })
+  }
+</script>
 <% include partials/_footer %>
